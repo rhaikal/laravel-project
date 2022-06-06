@@ -1,0 +1,25 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.logo-color {
+    color: $logo-color !important;
+}
+
+.cart-count {
+    vertical-align: top;
+    margin-left: -10px;
+}
+
+@media (min-width: 576px) {
+    .text-date-end {
+        position: absolute;
+        top: 1.2rem;
+        right: 1rem;
+    }
+}
