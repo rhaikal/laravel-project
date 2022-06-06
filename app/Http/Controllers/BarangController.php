@@ -40,11 +40,12 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $request['price'] = str_replace('.', '', $request->price);
+        $price = explode(' ' , $request['price']);
+        $request['price'] = str_replace('.', '', $price[1]);
         $validatedData = $request->validate([
             'image' => 'nullable',
             'item_name' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'stock' => 'required',
             'size' => 'required'
         ]);
