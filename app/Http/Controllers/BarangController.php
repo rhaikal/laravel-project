@@ -64,7 +64,9 @@ class BarangController extends Controller
      */
     public function show(Barang $barang)
     {
-        //
+        return view('dashboard.barang.show', [
+            'barang' => $barang
+        ]);
     }
 
     /**
