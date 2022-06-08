@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $barang->item_name }}</td>
-                        <td>{{ $barang->price }}</td>
+                        <td>Rp. {{ number_format($barang->price, 0 , ',', '.') }}</td>
                         <td>{{ $barang->stock }}</td>
                         <td>
                             <a href="/dashboard/barangs/{{ $barang->id }}" class="badge bg-info"><span data-feather="eye"></span></a>

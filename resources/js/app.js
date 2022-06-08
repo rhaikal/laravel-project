@@ -4,14 +4,18 @@ feather.replace({ "aria-hidden": "true" });
 
 var harga = document.getElementById("price");
 if (harga) {
+    window.addEventListener("load", function (e) {
+        harga.value = "Rp. " + formatAngka(harga.value);
+    });
+
     harga.addEventListener("keyup", function (e) {
-        if (harga.value > 0) {
+        harga.value = formatAngka(this.value);
+
+        if (harga.value) {
             harga.addEventListener("blur", function (e) {
                 harga.value = "Rp. " + formatAngka(this.value);
             });
         }
-
-        harga.value = formatAngka(this.value);
     });
 }
 

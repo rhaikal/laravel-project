@@ -23,13 +23,11 @@
                         <h3 class="card-title logo-color">{{ $barang->item_name }}</h3>
                         <table class="table table">
                             <tr>
-                                <input type="hidden" name="price" value="{{ $barang->price }}">
                                 <th scope="row">Harga</th>
                                 <td>:</td>
                                 <td>Rp {{ number_format($barang->price, 0 , ',', '.') }}</td>
                             </tr>
                             <tr>
-                                <input type="hidden" name="stock" value="{{ $barang->stock }}">
                                 <th scope="row">Stok</th>
                                 <td>:</td>
                                 <td>{{ $barang->stock }}</td>

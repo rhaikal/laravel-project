@@ -77,7 +77,9 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return view('dashboard.barang.edit', [
+            'barang' => $barang
+        ]);
     }
 
     /**
@@ -89,7 +91,20 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
+        $price = explode(' ' , $request['price']);
+        $request['price'] = str_replace('.', '', $price[1]);
+        $validatedData = $request->validate([
+            'image' => 'nullable',
+            'item_name' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required',
+            'size' => 'required'
+        ]);
+
+        $barang->update($validatedData);
+
+        Alert::success('Success', 'Barang Berhasil Diedit')->persistent(false, false)->autoClose(3000);
+        return redirect('/dashboard/barangs');
     }
 
     /**
