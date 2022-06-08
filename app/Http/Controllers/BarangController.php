@@ -115,6 +115,9 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        $barang->delete();
+
+        Alert::success('Success', 'Barang Berhasil Dihapus')->persistent(false, false)->autoClose(3000);
+        return redirect('/dashboard/barangs');
     }
 }
