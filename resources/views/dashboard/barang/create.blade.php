@@ -6,11 +6,12 @@
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard/barangs" method="post" class="mb-5">
+        <form action="/dashboard/barangs" method="post" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="image" class="form-label">Gambar</label>
-                <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image" autofocus value="{{ old('image') }}">
+                <img class="img-preview img-fluid mb-3 col-sm-5">
+                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" autofocus value="{{ old('image') }}">
                 @error('image')
                     <div class="invalid-feedback">
                     {{ $message }}

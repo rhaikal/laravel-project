@@ -10,7 +10,7 @@
             @foreach ($barangs as $barang)
                 <div class="col-md-4">
                     <div class="card mb-3">
-                        <img src="img/{{ $barang->image }}.jpg" class="card-img-top" alt="...">
+                        <img src="{{ asset('storage/' . $barang->image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title logo-color">{{ $barang->item_name }}</h5>
                             <p class="card-text">

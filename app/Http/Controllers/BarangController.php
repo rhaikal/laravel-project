@@ -43,12 +43,16 @@ class BarangController extends Controller
         $price = explode(' ' , $request['price']);
         $request['price'] = str_replace('.', '', $price[1]);
         $validatedData = $request->validate([
-            'image' => 'nullable',
+            'image' => 'nullable|image|file|max:1024',
             'item_name' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required',
             'size' => 'required'
         ]);
+
+        if($request->file('image')){
+            $validatedData['image'] = $request->file('image')->store('barang-image');
+        }
 
         Barang::create($validatedData);
         
