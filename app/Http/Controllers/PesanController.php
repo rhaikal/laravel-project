@@ -89,9 +89,12 @@ class PesanController extends Controller
                 'ordered_at' => today()
             ]);
         }
-
-        PesananDetail::destroy($pesananDetail->id);
         
+        $pesananDetail->delete();
+        if($pesanan->pesananDetail->count() === 1){
+            $pesanan->delete();
+        }
+
         Alert::success('Success', 'Pesanan Berhasil Dihapus')->persistent(false, false)->autoClose(3000);
         return redirect('/pesan/checkout');
     }

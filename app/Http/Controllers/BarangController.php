@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BarangController extends Controller
@@ -46,11 +47,11 @@ class BarangController extends Controller
             'image' => 'nullable|image|file|max:1024',
             'item_name' => 'required',
             'price' => 'required|numeric',
-            'stock' => 'required',
+            'stock' => 'required|numeric',
             'size' => 'required'
         ]);
 
-        if($request->file('image')){
+        if($validatedData['image']){
             $validatedData['image'] = $request->file('image')->store('barang-image');
         }
 
@@ -98,13 +99,20 @@ class BarangController extends Controller
         $price = explode(' ' , $request['price']);
         $request['price'] = str_replace('.', '', $price[1]);
         $validatedData = $request->validate([
-            'image' => 'nullable',
+            'image' => 'nullable|image|file|max:1024',
             'item_name' => 'required',
             'price' => 'required|numeric',
-            'stock' => 'required',
+            'stock' => 'required|numeric',
             'size' => 'required'
         ]);
 
+        if($validatedData['image']){
+            if($barang->image){
+                Storage::delete($barang->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('img');
+        }
+    
         $barang->update($validatedData);
 
         Alert::success('Success', 'Barang Berhasil Diedit')->persistent(false, false)->autoClose(3000);

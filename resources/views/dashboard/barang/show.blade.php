@@ -14,7 +14,7 @@
             </div>
             @if($barang->image)
                 <div class="col-lg-4 mt-3" style="max-height: 204px; overflow:hidden">
-                    <img src="/img/{{ $barang->image }}.jpg" class="img-fluid" alt="">
+                    <img src="{{ asset('storage/' . $barang->image) }}" class="img-fluid" alt="">
                 </div>
             @endif
             <div class="@if($barang->image) col-lg-8 @else col-md-12 @endif mt-3">

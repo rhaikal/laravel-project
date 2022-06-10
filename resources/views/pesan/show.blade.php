@@ -12,7 +12,7 @@
         <div class="card">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="/img/{{ $barang->image }}.jpg" class="img-fluid" alt="">
+                    <img src="{{ asset('storage/' . $barang->image) }}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-8 my-auto">
                     <div class="card-body">
