@@ -127,6 +127,10 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
+        if($barang->image){
+            Storage::delete($barang->image);
+        }
+
         $barang->delete();
 
         Alert::success('Success', 'Barang Berhasil Dihapus')->persistent(false, false)->autoClose(3000);
