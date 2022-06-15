@@ -6,7 +6,7 @@
         <div class="col-md-12">
             @include('layouts.breadcrumb')
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
                     <table class="table">
@@ -37,6 +37,11 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="col-md-4">
+                <a href="/settings" class="d-block btn btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>

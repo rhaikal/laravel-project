@@ -7,6 +7,12 @@
           Barang
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('dashboard/pesanans*') ? 'active' : '' }}" href="/dashboard/pesanans">
+        <span data-feather="archive"></span>
+          Pesanan
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

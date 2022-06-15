@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\DashboardPesanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,6 @@ Route::get('/settings', [UserController::class, 'edit']);
 Route::post('/settings', [UserController::class, 'update']);
 
 Route::resource('dashboard/barangs', BarangController::class)->middleware('admin');
+Route::resource('dashboard/pesanans', DashboardPesanController::class)->middleware('admin')->except(['create', 'store','edit'])->scoped([
+    'pesanan' => 'code',
+]);

@@ -11,7 +11,7 @@ class Pesanan extends Model
 {
     use HasFactory;
 
-    protected $with = ['pesananDetail'];
+    protected $with = ['pesananDetail', 'user'];
 
     protected $guarded = ['id'];
 
