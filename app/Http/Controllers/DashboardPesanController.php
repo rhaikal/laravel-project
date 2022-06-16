@@ -27,7 +27,9 @@ class DashboardPesanController extends Controller
      */
     public function show(Pesanan $pesanan)
     {
-        //
+        return view('dashboard.pesan.show', [
+            'pesanan' => $pesanan
+        ]);
     }
 
     /**
