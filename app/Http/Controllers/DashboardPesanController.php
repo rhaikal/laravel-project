@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardPesanController extends Controller
 {
@@ -39,9 +40,20 @@ class DashboardPesanController extends Controller
      * @param  \App\Models\Pesanan  $pesanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pesanan $pesanan)
+    public function update(Pesanan $pesanan)
     {
-        //
+        if ($pesanan->status == '1') 
+        {
+            $pesanan->update(['status' => '2']);
+            Alert::success('Success', 'Berhasil Mengkonfirmasi Pesanan')->persistent(false, false)->autoClose(3000);
+        }
+        else
+        {
+            $pesanan->update(['status' => '1']);
+            Alert::warning('Warning', 'Berhasil Menghapus Konfirmasi')->persistent(false, false)->autoClose(3000);    
+        }
+
+        return redirect('/dashboard/pesanans');
     }
 
     /**
