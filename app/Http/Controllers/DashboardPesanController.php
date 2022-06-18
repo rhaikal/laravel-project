@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use App\Models\PesananDetail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardPesanController extends Controller
@@ -64,6 +65,11 @@ class DashboardPesanController extends Controller
      */
     public function destroy(Pesanan $pesanan)
     {
-        //
+        PesananDetail::destroy($pesanan->pesananDetail->pluck('id'));
+
+        $pesanan->delete();
+        
+        Alert::warning('Success', 'Berhasil Menghapus History Pemesanan')->persistent(false, false)->autoClose(3000);
+        return redirect('/dashboard/pesanans');
     }
 }
