@@ -17,7 +17,7 @@ class DashboardPesanController extends Controller
     public function index()
     {
         return view('dashboard.pesan.index', [
-            'pesanans' => Pesanan::all()
+            'pesanans' => Pesanan::where('status', '>=', 1)->get()
         ]);
     }
 
@@ -65,7 +65,19 @@ class DashboardPesanController extends Controller
      */
     public function destroy(Pesanan $pesanan)
     {
-        PesananDetail::destroy($pesanan->pesananDetail->pluck('id'));
+        $pesananDetails = $pesanan->pesananDetail;
+        
+        if($pesanan->status == 1){
+            foreach($pesananDetails as $pesananDetail)
+            {
+                $barang = $pesananDetail->barang;
+                $barang->update([
+                    'stock' => $barang->stock + $pesananDetail->amount
+                ]);
+            }
+        }
+
+        PesananDetail::destroy($pesananDetails->pluck('id'));
 
         $pesanan->delete();
         
