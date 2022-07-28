@@ -39,7 +39,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pesanan_detail->barang->item_name }}</td>
                                         <td>{{ $pesanan_detail->amount }} kain</td>
-                                        <td>Rp  {{ number_format($pesanan->total_price + $pesanan->total_price * 2 / 100, 0, ',', '.') }}</td>
+                                        <td>Rp  {{ number_format($pesanan_detail->total_price, 0, ',', '.') }}</td>
                                     </tr>
                                     @endforeach
                             </tbody>
